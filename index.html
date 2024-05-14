@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Calendar</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <span class="main">
+            <div class="d-inline d-flex justify-content-center" id="prevNextButton">
+                <button class="btn btn-light d-inline" id="calendar-prev" style="width: 20vh;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path
+                            d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                    </svg>
+                </button>
+                <div class="h3 d-flex justify-content-center m-5">
+                    <p class="calendar-current-date"></p>
+
+                </div>
+                <button class="btn btn-light d-inline" id="nextMounth" style="width: 20vh;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                        <path
+                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                    </svg>
+                </button>
+
+            </div>
+
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="alert alert-success p-2 bd-highlight" id="info" style="display: none;">
+                    <ul class="list-group" id="alertList">
+                        <!-- <li class="list-group-item" style="background-color:#a3cfbb">deneme123</li> -->
+                    </ul>
+                </div>
+                <!-- <button class="btn btn-primary">buton</button> -->
+            </div>
+
+            <div class="calendar">
+                <ul class="calendar-weekdays m-2 list-group d-grid text-center"
+                    style="grid-template-columns: repeat(7, 1fr);">
+                    <li class="list-group-item border-0">MONDAY</li>
+                    <li class="list-group-item border-0">TUESDAY</li>
+                    <li class="list-group-item border-0">WEDNESDAY</li>
+                    <li class="list-group-item border-0">THURSDAY</li>
+                    <li class="list-group-item border-0">FRIDAY</li>
+                    <li class="list-group-item border-0">SATURDAY</li>
+                    <li class="list-group-item border-0">SUNDAY</li>
+                </ul>
+
+                <ul class="calendar-dates list-group d-grid text-center" style="grid-template-columns: repeat(7, 1fr);">
+
+
+                    <!-- <li class="list-group-item border-0" id="${year}_${month + 1}_${currentDate}">
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="${isToday} btn btn-light m-2 p-0 border" style="height: 15vh; width: 25vh;">
+                        <h5>${currentDate}</h5>
+                        <br />
+                        <div class="gap-4" id="eventDiv" >
+                            <span class="badge badge-success bg-success">15:30 - ${inputValue}</span><br />
+                            <span class="badge badge-success bg-success">20:35 - sadasddsa</span><br />
+                        </div>
+                    </button>
+                </li> -->
+
+                </ul>
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Event Modal</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <label for="eventTime">Event Time:</label>
+                                <input type="time" id="eventTime"class="form-control w-25" name="eventTime">
+
+
+
+                                <div class="m-4">
+                                    <ul class="list-group" id="modalListGroup">
+
+                                        <!-- <li class="list-group-item border-0 d-flex justify-content-between align-items-center m-1" style="background-color: rgb(219, 219, 219);" id="eventList">
+                                    <label for="eventList" class="m-2">15:30</label>
+                                    <input maxlength="10" disabled class="form-control m-2 col" for="eventList" value="asdsdads">
+                                    <div class="buttonList col">
+                                        <button class="btn btn-danger" id = "eventDelete">delete</button>
+                                        <button class="btn btn-info"  id ="eventEdit">edit</button>
+                                    </div>
+                                </li> -->
+
+                                    </ul>
+                                </div>
+
+
+
+
+                                <div class="h5 m-4" id="exampleModalBodyLabel"></div>
+                                <input class="form-control" placeholder="Add Event" type="text" id="modalInput">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    id="modalClose">Close</button>
+                                <button type="button" class="btn btn-primary" id="modalSubmit">Add New Event</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <button type="button" class="btn btn-primary thumbnail d-none" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalIn" id="alertModalButton"  >
+                    Hadi Lan
+                </button>
+
+                <div class="modal" id="exampleModalIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger">
+                                <h5 class="modal-title m-auto d-flex" id="exampleModalLabel">VAKİT DOLDU!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body bg-danger p-0 d-flex align-items-center">
+
+                                <iframe width="497" height="480" src="https://www.youtube.com/embed/Fhp_T4uSOZw"
+                                    title="Memati kalk lan kalk"
+                                    frameborder="1"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen autoplay ></iframe>
+                            </div>
+                            <div class="containe bg-light p-4" style="font-size: larger;" id="alertModalDiv">
+                                ${span.innerText} - Expired
+                            </div>
+                            <div class="modal-footer bg-danger">
+                                <button type="button" class="btn" style="background-color: rgb(245, 147, 147);"
+                                    data-bs-dismiss="modal">KALKTIM TAMAM</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="storage.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
